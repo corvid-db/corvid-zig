@@ -46,7 +46,7 @@ Requirements: Zig **0.16.0** (the current stable line; see
 `shasum`/`sha256sum` (macOS/Linux) or PowerShell 5+ (Windows).
 
 ```sh
-./fetch.sh                     # download + verify corvid v0.3.2 into deps/current/
+./fetch.sh                     # download + verify corvid v0.3.3 into deps/current/
 zig build test                 # wrapper unit tests + the golden suite (267/267)
 zig build run-quickstart       # open → insert → kNN → print
 zig build examples             # build the whole six-program tour
@@ -128,7 +128,7 @@ user's bug report.
 ## Versioning
 
 The engine pin lives in one variable in the fetch scripts
-(`CORVID_VERSION=v0.3.2`). Artifacts are always taken from that exact
+(`CORVID_VERSION=v0.3.3`). Artifacts are always taken from that exact
 tag's GitHub release and sha256-verified; `deps/` is never committed.
 Bumps are one-variable changes, gated by the golden suite.
 
