@@ -9,7 +9,7 @@ suite produces; on top of that proof it carries the idiomatic Zig API.
 
 Engine repo: `corvid-db/corvid` (read-only upstream; never a submodule,
 never vendored). Canonical docs: the corvid docs site's FFI section (the
-`docs/FFI.md` contract — 124 symbols at v0.3.1, frozen enums, §8 idiom
+`docs/FFI.md` contract — 124 symbols at v0.3.2, frozen enums, §8 idiom
 gate).
 
 ## The architecture ruling: idiomatic Zig over the typed C ABI,
@@ -64,7 +64,7 @@ application code should stick to the wrapper types.
 Inherited from the bindings program's master plan and non-negotiable:
 
 > **A binding opens with the golden-suite port.** The engine's golden
-> fixtures (267 executable lines across 8 files at v0.3.1 — the 256 the
+> fixtures (267 executable lines across 8 files at v0.3.2 — the 256 the
 > suite shipped with, plus the v0.3.0 `VMAP_KEYS`/`GET_KEYS`/`PHRASE`
 > lines) are the contract; a binding that wraps the ABI before it can
 > replay the contract is building on unverified ground. No ergonomic
@@ -82,7 +82,7 @@ creation path.
 
 ## Binding rules (from the master plan)
 
-- **Pin EXACT engine tags.** One engine version at a time; today `v0.3.1`.
+- **Pin EXACT engine tags.** One engine version at a time; today `v0.3.2`.
   The pin lives in exactly one variable per fetch script
   (`CORVID_VERSION` / `$CorvidVersion`) and is stamped into
   `deps/version.txt`; build.zig never guesses.
@@ -150,7 +150,7 @@ modern minimums, CI tests current + previous, no EOL lines.
 
 ## Findings against published artifacts
 
-(none yet — the v0.3.1 artifacts verify and the suite is 267/267 green on
+(none yet — the v0.3.2 artifacts verify and the suite is 267/267 green on
 them.)
 
 ## Verdict protocol
