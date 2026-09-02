@@ -1,0 +1,107 @@
+# ci — the Zig-binding gate.
+#
+# Per platform: fetch + sha256-verify the pinned engine release
+# artifacts, then `zig build test` — the golden-suite port (267
+# executable lines across 8 fixtures, including the v0.3.0
+# VMAP_KEYS/GET_KEYS/PHRASE lines) replayed against the DOWNLOADED
+# cdylib, plus the wrapper's unit tests — and the examples tour (six
+# runnable programs — quickstart, hybrid, vector-index, text-search with
+# the phrase API, graph, geo). A Linux sanitizer leg rebuilds the
+# harness and the examples with ASan (the fetched cdylib is a release
+# artifact and is not rebuilt — this catches binding-side memory errors
+# and leaks, the same expectation corvid-c's sanitizer job has). The
+# surface gate resolves docs/SURFACE.tsv against the engine's surface
+# list at the pin.
+#
+# Toolchain policy (scripts/bindings/README.md, engine repo): modern
+# minimums, CI tests current + previous where cheap. Zig is pre-1.0 and
+# 0.16 moved the std.fs/Io surface wholesale, so a single tree honestly
+# covering 0.15 too would need a file-API compat shim — not cheap, no
+# users to protect; the floor rides the current stable line (see
+# docs/PLAN.md "Toolchain policy").
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / zig ${{ matrix.zig-version }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        zig-version: ['0.16.0']
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: mlugg/setup-zig@v2
+        with:
+          zig-version: ${{ matrix.zig-version }}
+
+      - name: Fetch + verify engine artifacts (sha256)
+        if: runner.os != 'Windows'
+        run: ./fetch.sh
+
+      - name: Fetch + verify engine artifacts (sha256)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./fetch.ps1
+
+      - name: Golden suite + unit tests (267 fixture lines through the binding)
+        run: zig build test
+
+      - name: Examples tour (six runnable programs, deterministic output)
+        shell: bash
+        run: |
+          for ex in quickstart hybrid vector_index text_search graph geo; do
+            echo "== $ex =="
+            zig build run-$ex
+          done
+
+  sanitizer:
+    # ASan on Linux: the golden port, the unit tests, and the examples
+    # tour must run clean instrumented (every handle freed on its
+    # creation path — zero reports, the same expectation the engine's
+    # sanitized smoke run has; the fetched cdylib is a release artifact
+    # and is not instrumented).
+    name: sanitizer (linux, asan)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: mlugg/setup-zig@v2
+        with:
+          zig-version: '0.16.0'
+
+      - name: Fetch + verify engine artifacts (sha256)
+        run: ./fetch.sh
+
+      - name: Golden suite + unit tests under ASan
+        run: zig build -Dsanitize=true test
+
+      - name: Examples tour under ASan
+        shell: bash
+        run: |
+          for ex in quickstart hybrid vector_index text_search graph geo; do
+            zig build -Dsanitize=true run-$ex
+          done
+
+  surface-gate:
+    # docs/SURFACE.tsv vs the engine's surface list at the PINNED tag:
+    # every engine construct mapped (binding api + proving test) or N/A
+    # with a reason; N/A count pinned to the committed baseline.
+    name: surface gate (SURFACE.tsv vs pinned engine)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Resolve docs/SURFACE.tsv against the pinned engine surface
+        run: ./scripts/surface-gate.sh

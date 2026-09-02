@@ -1,0 +1,9 @@
+# zig build output
+.zig-cache/
+zig-out/
+
+# fetched engine artifacts (fetch.sh / fetch.ps1)
+deps/
+
+# editor/OS
+.DS_Store

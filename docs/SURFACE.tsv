@@ -1,0 +1,327 @@
+corvid::Value	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Null	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Bool	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Int	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Float	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Text	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Bytes	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Array	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Map	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::Value::Vector	WHERE	MAPPED	corvid.Value constructors + corvid.Value.kind (corvid.ValueKind)	golden:values.txt:VTYPE
+corvid::value::MAX_NESTING	Lifecycle	N/A	N/A	engine byte codec is dump/load internal machinery, not a binding API
+corvid::Value::encode	Lifecycle	N/A	N/A	engine byte codec is dump/load internal machinery, not a binding API
+corvid::Value::decode	Lifecycle	N/A	N/A	engine byte codec is dump/load internal machinery, not a binding API
+corvid::Value::get	WHERE	MAPPED	corvid.ValueView.arrayGet/mapGet	golden:values.txt:VNEST
+corvid::Value::get_path	WHERE	MAPPED	corvid.ValueView.arrayGet/mapGet	golden:values.txt:VNEST
+corvid::Value::as_bool	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::Value::as_int	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::Value::as_float	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::Value::as_text	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::Value::as_bytes	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::Value::as_vector	WHERE	MAPPED	corvid.ValueView.asBool/asInt/asFloat, textRef/bytesRef/vectorRef	golden:values.txt:VAS_*/V*_REF
+corvid::CmpOp	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Eq	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Ne	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Lt	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Le	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Gt	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::CmpOp::Ge	WHERE	MAPPED	corvid.Cmp (.eq/.ne/.lt/.le/.gt/.ge)	golden:queries.txt:QF_*
+corvid::Predicate	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Compare	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Exists	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::In	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Between	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::StartsWith	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Contains	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::GeoWithin	Geo	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::And	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Or	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::Not	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::and	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::or	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Predicate::eval	WHERE	N/A	N/A	predicate evaluation is engine-internal; bindings pass predicates to Query.filter()/deleteWhere()
+corvid::field	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::eq	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::ne	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::lt	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::le	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::gt	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::ge	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::exists	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::is_in	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::between	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::starts_with	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::contains	WHERE	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::filter::FieldRef::within_km	Geo	MAPPED	corvid.Pred constructor family (+ andOp/orOp/notOp moves)	golden:queries.txt:QF_* + golden:mutations.txt:DELETE_IN
+corvid::Metric	Vector search	MAPPED	corvid.Metric enum (.cosine/.dot/.l2)	golden:queries.txt:QVEC
+corvid::Metric::Cosine	Vector search	MAPPED	corvid.Metric enum (.cosine/.dot/.l2)	golden:queries.txt:QVEC
+corvid::Metric::Dot	Vector search	MAPPED	corvid.Metric enum (.cosine/.dot/.l2)	golden:queries.txt:QVEC
+corvid::Metric::L2	Vector search	MAPPED	corvid.Metric enum (.cosine/.dot/.l2)	golden:queries.txt:QVEC
+corvid::Metric::distance	Vector search	N/A	N/A	pure math helper, not a binding API; metric behavior surfaces via Query.vector metric + index creation
+corvid::distance::dot	Vector search	N/A	N/A	pure math helpers, not binding APIs; distance behavior surfaces via Query.vector
+corvid::distance::l2_squared	Vector search	N/A	N/A	pure math helpers, not binding APIs; distance behavior surfaces via Query.vector
+corvid::distance::cosine_distance	Vector search	N/A	N/A	pure math helpers, not binding APIs; distance behavior surfaces via Query.vector
+corvid::Quantization	Vector search	MAPPED	corvid.Quant enum (.none/.binary/.scalar)	golden:schema.txt:IDX_VEC_Q
+corvid::Quantization::None	Vector search	MAPPED	corvid.Quant enum (.none/.binary/.scalar)	golden:schema.txt:IDX_VEC_Q
+corvid::Quantization::Binary	Vector search	MAPPED	corvid.Quant enum (.none/.binary/.scalar)	golden:schema.txt:IDX_VEC_Q
+corvid::Quantization::Scalar	Vector search	MAPPED	corvid.Quant enum (.none/.binary/.scalar)	golden:schema.txt:IDX_VEC_Q
+corvid::Result	Lifecycle	MAPPED	corvid.Error + corvid.lastErrorCode/lastErrorMessage	golden:mutations.txt:INSERT_ERR
+corvid::Error	Lifecycle	MAPPED	corvid.ErrCode via corvid.lastErrorCode	errcodes
+corvid::Error::Database	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 1)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Transaction	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 2)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Table	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 3)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Storage	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 4)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Commit	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 5)	errcodes (frozen-table _Static_assert test)
+corvid::Error::SetDurability	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 6)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Compaction	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 7)	errcodes (frozen-table _Static_assert test)
+corvid::Error::Decode	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 8)	errcodes (frozen-table _Static_assert test)
+corvid::Error::CorruptIndex	Schema (ALTER)	MAPPED	corvid.Error / corvid.ErrCode (code 9)	errcodes (frozen-table _Static_assert test)
+corvid::Error::ReservedCollection	Schema (ALTER)	MAPPED	corvid.Error / corvid.ErrCode (code 10)	errcodes (frozen-table _Static_assert test); golden:mutations.txt:INSERT_ERR(err:10)
+corvid::Error::InvalidName	Schema (ALTER)	MAPPED	corvid.Error / corvid.ErrCode (code 11)	errcodes (frozen-table _Static_assert test); golden:mutations.txt:INSERT_ERR(err:11)
+corvid::Error::InvalidArgument	Hybrid	MAPPED	corvid.Error / corvid.ErrCode (code 12)	errcodes (frozen-table _Static_assert test); golden:mutations.txt:UPDATE_ABORT(err:12)
+corvid::Error::IncompatibleFormat	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 13)	errcodes (frozen-table _Static_assert test)
+corvid::Error::EmptyIndexTraining	Schema (ALTER)	MAPPED	corvid.Error / corvid.ErrCode (code 14)	errcodes (frozen-table _Static_assert test); golden:schema.txt:IDX_PQ_ERR(err:14)
+corvid::Error::SchemaViolation	Schema (ALTER)	MAPPED	corvid.Error / corvid.ErrCode (code 15)	errcodes (frozen-table _Static_assert test); golden:schema.txt:SCHEMA_ERR(err:15)
+corvid::Error::InvalidDump	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 16)	errcodes (frozen-table _Static_assert test)
+corvid::Error::BackupTargetExists	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 17)	errcodes (frozen-table _Static_assert test); golden:admin.txt:BACKUP_DUP(err:17)
+corvid::Error::Io	Lifecycle	MAPPED	corvid.Error / corvid.ErrCode (code 18)	errcodes (frozen-table _Static_assert test)
+corvid::ResultRow	SELECT shaping	MAPPED	corvid.Rows.next cursor (corvid.Row)	golden:queries.txt
+corvid::PlanShape	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::AnnIndex	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::TextIndex	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::IndexedWindow	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::SortIndex	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::StreamingTopK	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::PlanShape::Scan	Lifecycle	N/A	N/A	plan shapes are advisory diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::QueryBuilder	SELECT shaping	MAPPED	corvid.Collection.query (corvid.Query builder)	golden:queries.txt
+corvid::Collection::query	SELECT shaping	MAPPED	corvid.Collection.query (corvid.Query builder)	golden:queries.txt
+corvid::QueryBuilder::filter	WHERE	MAPPED	corvid.Query.filter (consumes the corvid.Pred)	golden:queries.txt:QF_COUNT
+corvid::QueryBuilder::vector	Vector search	MAPPED	corvid.Query.vector	golden:queries.txt:QVEC
+corvid::QueryBuilder::text	Text search	MAPPED	corvid.Query.text	golden:queries.txt:QTEXT
+corvid::QueryBuilder::fuse_rrf	Hybrid	MAPPED	corvid.Query.fuseRrf	golden:queries.txt:HYBRID_F
+corvid::QueryBuilder::rerank_mmr	Hybrid	MAPPED	corvid.Query.rerankMmr	golden:queries.txt:HYBRID
+corvid::QueryBuilder::limit	SELECT shaping	MAPPED	corvid.Query.limit	golden:queries.txt:ORDER_BY
+corvid::QueryBuilder::offset	SELECT shaping	MAPPED	corvid.Query.offset	golden:queries.txt:ORDER_BY
+corvid::QueryBuilder::order_by	SELECT shaping	MAPPED	corvid.Query.orderBy/orderByDesc	golden:queries.txt:ORDER_BY
+corvid::QueryBuilder::approx	Vector search	MAPPED	corvid.Query.approx	golden:queries.txt:APPROX
+corvid::QueryBuilder::select	SELECT shaping	MAPPED	corvid.Query.select	golden:queries.txt:SELECT
+corvid::QueryBuilder::count	Aggregations	MAPPED	corvid.Query.count	golden:queries.txt:AGG_COUNT
+corvid::QueryBuilder::group_count	Aggregations	MAPPED	corvid.Query.groupCount	golden:queries.txt:AGG_GCOUNT
+corvid::QueryBuilder::sum	Aggregations	MAPPED	corvid.Query.sum	golden:queries.txt:AGG_SUM
+corvid::QueryBuilder::avg	Aggregations	MAPPED	corvid.Query.avg	golden:queries.txt:AGG_AVG
+corvid::QueryBuilder::min	Aggregations	MAPPED	corvid.Query.min	golden:queries.txt:AGG_MIN
+corvid::QueryBuilder::max	Aggregations	MAPPED	corvid.Query.max	golden:queries.txt:AGG_MAX
+corvid::QueryBuilder::count_distinct	Aggregations	MAPPED	corvid.Query.countDistinct	golden:queries.txt:AGG_DISTINCT
+corvid::QueryBuilder::group_sum	Aggregations	MAPPED	corvid.Query.groupSum	golden:queries.txt:AGG_GSUM
+corvid::QueryBuilder::group_avg	Aggregations	MAPPED	corvid.Query.groupAvg	golden:queries.txt:AGG_GAVG
+corvid::QueryBuilder::plan	Lifecycle	N/A	N/A	plan/explain diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::QueryBuilder::plan_shape	Lifecycle	N/A	N/A	plan/explain diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::QueryBuilder::explain	Lifecycle	N/A	N/A	plan/explain diagnostics excluded from the v1 ABI (FFI.md §9)
+corvid::QueryBuilder::run	SELECT shaping	MAPPED	corvid.Query.run (consumes the builder)	golden:queries.txt:QVEC
+corvid::Db	Lifecycle	MAPPED	corvid.Db.open/openMemory handle (deinit)	golden:admin.txt:FILEDB
+corvid::Db::open	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Db::open_in_memory	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Db::collection	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Db::backup	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Db::bulk	Lifecycle	N/A	N/A	put_many covers the bulk fast path (FFI.md §9); Db::bulk not exposed
+corvid::Db::compact	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Db::collections	Lifecycle	MAPPED	corvid.Db.open/openMemory/collection/collections/backup/compact + corvid.Collection.deinit	golden:admin.txt (COLLECTIONS/BACKUP/COMPACT)
+corvid::Collection	Mutations	MAPPED	corvid.Collection handle family (deinit)	golden:mutations.txt:COLL
+corvid::Collection::insert	Mutations	MAPPED	corvid.Collection.insert/update/patch/compareAndSet	golden:mutations.txt (INSERT/UPDATE/PATCH/CAS)
+corvid::Collection::update	Mutations	MAPPED	corvid.Collection.insert/update/patch/compareAndSet	golden:mutations.txt (INSERT/UPDATE/PATCH/CAS)
+corvid::Collection::patch	Mutations	MAPPED	corvid.Collection.insert/update/patch/compareAndSet	golden:mutations.txt (INSERT/UPDATE/PATCH/CAS)
+corvid::Collection::compare_and_set	Mutations	MAPPED	corvid.Collection.insert/update/patch/compareAndSet	golden:mutations.txt (INSERT/UPDATE/PATCH/CAS)
+corvid::Collection::for_each_doc	SELECT shaping	MAPPED	corvid.Collection.scan callback + early stop	golden:mutations.txt:SCAN/SCAN_STOP
+corvid::Collection::len	SELECT shaping	MAPPED	corvid.Collection.len (== 0 for empty)	golden:mutations.txt:LEN
+corvid::Collection::is_empty	SELECT shaping	MAPPED	corvid.Collection.len (== 0 for empty)	golden:mutations.txt:LEN
+corvid::Collection::insert_batch	Mutations	MAPPED	corvid.Collection.putMany (corvid.Kv)	golden:mutations.txt:PUTMANY + golden:schema.txt:PUTMANY_ROLLBACK
+corvid::Collection::insert_auto	Mutations	MAPPED	corvid.Collection.insertAuto	golden:mutations.txt:INSERT_AUTO
+corvid::Collection::get	SELECT shaping	MAPPED	corvid.Collection.get	golden:mutations.txt:GET
+corvid::Collection::delete	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)
+corvid::Collection::delete_where	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)
+corvid::Collection::delete_batch	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)
+corvid::Collection::scan	SELECT shaping	MAPPED	corvid.Collection.scan (full walk)	golden:mutations.txt:SCAN
+corvid::Collection::page	SELECT shaping	MAPPED	corvid.Collection.page (corvid.Page)	golden:mutations.txt:PAGE
+corvid::Collection::page_where	SELECT shaping	N/A	N/A	filtered keyset pagination composes from filter+limit/offset (FFI.md §9 spec note)
+corvid::db::Page	SELECT shaping	MAPPED	corvid.Collection.page (corvid.Page)	golden:mutations.txt:PAGE
+corvid::Store	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::open	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::open_in_memory	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::set_relaxed_durability	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::begin_bulk	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::flush	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::compact	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::next_auto_id	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::backup	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::transaction	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::read	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::put	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::get	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::delete	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::scan	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::collections	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::scan_from	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::count	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::for_each	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Store::scan_prefix	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::BulkScope	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::put	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::get	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::delete	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::scan	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::scan_from	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::WriteBatch::next_auto_id	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::collections	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::auto_ids	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::get	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::scan	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::scan_from	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::scan_prefix	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::store::ReadBatch::for_each	Lifecycle	N/A	N/A	engine low-level byte KV (Store/WriteBatch/ReadBatch); the v1 binding is typed-document only (FFI.md ruling 1)
+corvid::Hit	Vector search	MAPPED	corvid.Row.score from corvid.Rows.next	golden:queries.txt:QVEC
+corvid::TextHit	Text search	MAPPED	corvid.Row.score from corvid.Rows.next	golden:queries.txt:QTEXT
+corvid::Collection::text_search	Text search	N/A	N/A	direct search fn not exposed: the query builder replaces it (Query.vector()/text(); FFI.md §9)
+corvid::Collection::phrase_search	Text search	MAPPED	corvid.Collection.phraseSearch (the v0.3.0 direct positional fn) over the corvid.Rows cursor	golden:queries.txt:PHRASE
+corvid::Collection::vector_search	Vector search	N/A	N/A	direct search fn not exposed: the query builder replaces it (Query.vector()/text(); FFI.md §9)
+corvid::text::Bm25Params	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::Bm25Params::new	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::Bm25Params::validate	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::tokenize	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::s_stem	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::Analyzer	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::Analyzer::raw	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::Analyzer::analyze	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::analyze	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::idf	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::text::term_score	Text search	N/A	N/A	text-analysis internals; BM25 search is exposed via Query.text()
+corvid::DEFAULT_RRF_K	Hybrid	MAPPED	corvid.Query.fuseRrf default k=60	golden:queries.txt:HYBRID
+corvid::reciprocal_rank_fusion	Hybrid	N/A	N/A	internal fusion math; the binding knob is fuseRrf (golden:queries.txt HYBRID)
+corvid::mmr	Hybrid	N/A	N/A	internal MMR math; the binding knob is rerankMmr (golden:queries.txt HYBRID)
+corvid::haversine_km	Geo	N/A	N/A	pure geo helper; distances surface as GeoHit distance_km (golden:geo.txt NEAREST)
+corvid::GeoHit	Geo	MAPPED	corvid.GeoHits.next cursor (corvid.GeoHit)	golden:geo.txt:RADIUS/NEAREST/BBOX
+corvid::Collection::geo_within_radius	Geo	MAPPED	corvid.Collection.geoWithinRadius/geoNearest/geoWithinBbox/createGeoIndex	golden:geo.txt (RADIUS/NEAREST/BBOX/IDX_GEO)
+corvid::Collection::geo_nearest	Geo	MAPPED	corvid.Collection.geoWithinRadius/geoNearest/geoWithinBbox/createGeoIndex	golden:geo.txt (RADIUS/NEAREST/BBOX/IDX_GEO)
+corvid::Collection::geo_within_bbox	Geo	MAPPED	corvid.Collection.geoWithinRadius/geoNearest/geoWithinBbox/createGeoIndex	golden:geo.txt (RADIUS/NEAREST/BBOX/IDX_GEO)
+corvid::Collection::create_geo_index	Schema (ALTER)	MAPPED	corvid.Collection.geoWithinRadius/geoNearest/geoWithinBbox/createGeoIndex	golden:geo.txt (RADIUS/NEAREST/BBOX/IDX_GEO)
+corvid::Collection::link	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::link_weighted	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::neighbors_weighted	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::unlink	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::neighbors	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::in_neighbors	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::Collection::traverse	Graph	MAPPED	corvid.Collection.link/linkWeighted/unlink/neighbors/inNeighbors/neighborsWeighted/traverse	golden:graph.txt
+corvid::JoinRow	Joins	N/A	N/A	joins are not in the v1 binding API (no FFI symbol)
+corvid::Collection::join	Joins	N/A	N/A	joins are not in the v1 binding API (no FFI symbol)
+corvid::hnsw::DEFAULT_M	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::hnsw::DEFAULT_EF_CONSTRUCTION	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::new	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::with_params	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::with_quant	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::with_pq	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::len	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::is_empty	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::insert	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Hnsw::search	Vector search	N/A	N/A	standalone Hnsw builder is engine-internal; v1 creates indexes via createVectorIndex* (golden:schema.txt IDX_VEC*)
+corvid::Collection::create_vector_index	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_vector_index_quantized	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_vector_index_ondisk	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_vector_index_ondisk_quantized	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_vector_index_ondisk_pq	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_vector_index_pq	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_text_index	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_text_index_ondisk	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_scalar_index	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::Collection::create_compound_index	Schema (ALTER)	MAPPED	corvid.Collection.createScalarIndex/createCompoundIndex/createTextIndex/createTextIndexOndisk/createGeoIndex/createVectorIndex/createVectorIndexQuantized/createVectorIndexOndisk/createVectorIndexOndiskQuantized/createVectorIndexPq/createVectorIndexOndiskPq	golden:schema.txt:IDX_*
+corvid::schema::FieldType	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Any	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Bool	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Int	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Float	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Text	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Bytes	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Vector	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Array	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::FieldType::Map	Schema (ALTER)	MAPPED	corvid.FieldType enum	golden:schema.txt:SET_SCHEMA/SCHEMA
+corvid::schema::Field	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Field::new	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Field::required	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Field::unique	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Schema	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Schema::new	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Schema::field	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::schema::Schema::fields	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::Collection::set_schema	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::Collection::schema	Schema (ALTER)	MAPPED	corvid.Collection.setSchema/schema + corvid.SchemaIter	golden:schema.txt:SET_SCHEMA/SCHEMA/SCHEMA_ERR
+corvid::ChangeKind	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::ChangeKind::Insert	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::ChangeKind::Delete	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::ChangeEvent	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::SubscriptionId	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::Db::subscribe	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::Db::unsubscribe	Lifecycle	N/A	N/A	events/subscriptions excluded from the v1 ABI: cross-language reentrancy (FFI.md §9)
+corvid::SemanticCache	Lifecycle	N/A	N/A	semantic cache: young engine API, excluded from v1 bindings (FFI.md §9)
+corvid::Collection::semantic_cache	Lifecycle	N/A	N/A	semantic cache: young engine API, excluded from v1 bindings (FFI.md §9)
+corvid::SemanticCache::put	Lifecycle	N/A	N/A	semantic cache: young engine API, excluded from v1 bindings (FFI.md §9)
+corvid::SemanticCache::get	Lifecycle	N/A	N/A	semantic cache: young engine API, excluded from v1 bindings (FFI.md §9)
+corvid::HyperLogLog	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::HyperLogLog::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::HyperLogLog::with_precision	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::HyperLogLog::add_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::HyperLogLog::add_hash	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::HyperLogLog::estimate	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::BloomFilter	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::BloomFilter::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::BloomFilter::add_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::BloomFilter::contains_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::CuckooFilter	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::CuckooFilter::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::CuckooFilter::add_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::CuckooFilter::contains_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::CuckooFilter::delete_bytes	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest::add	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest::merge	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest::quantile	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::TDigest::cdf	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::MinHash	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::MinHash::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::MinHash::signature	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::MinHash::jaccard_estimate	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::LshIndex	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::LshIndex::new	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::LshIndex::insert	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::LshIndex::candidates	Lifecycle	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::Collection::approx_distinct	Aggregations	N/A	N/A	sketch data structure excluded from v1 bindings (FFI.md §9; reopen on user demand)
+corvid::Collection::insert_with_ttl	TTL	MAPPED	corvid.Collection.insertWithTtl/setTtl/getTtl/purgeExpired	golden:mutations.txt (INSERT_TTL/SET_TTL/GET_TTL/PURGE)
+corvid::Collection::set_ttl	TTL	MAPPED	corvid.Collection.insertWithTtl/setTtl/getTtl/purgeExpired	golden:mutations.txt (INSERT_TTL/SET_TTL/GET_TTL/PURGE)
+corvid::Collection::ttl	TTL	MAPPED	corvid.Collection.insertWithTtl/setTtl/getTtl/purgeExpired	golden:mutations.txt (INSERT_TTL/SET_TTL/GET_TTL/PURGE)
+corvid::Collection::purge_expired	TTL	MAPPED	corvid.Collection.insertWithTtl/setTtl/getTtl/purgeExpired	golden:mutations.txt (INSERT_TTL/SET_TTL/GET_TTL/PURGE)
+corvid::Db::dump	Lifecycle	MAPPED	corvid.Db.dumpToPath/loadFromPath/loadFromPathWithRenames	golden:admin.txt (DUMP/LOAD/LOAD_RENAMES)
+corvid::Db::load	Lifecycle	MAPPED	corvid.Db.dumpToPath/loadFromPath/loadFromPathWithRenames	golden:admin.txt (DUMP/LOAD/LOAD_RENAMES)
+corvid::Db::load_with_renames	Lifecycle	MAPPED	corvid.Db.dumpToPath/loadFromPath/loadFromPathWithRenames	golden:admin.txt (DUMP/LOAD/LOAD_RENAMES)
+corvid::pq::Pq	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::code_len	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::dim	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::params	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::train	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::encode	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::decode	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::distance	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::l2_table	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::adc_l2	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::to_bytes	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::pq::Pq::from_bytes	Vector search	N/A	N/A	PQ training/codec internals; exposed via createVectorIndexPq/OndiskPq (golden:schema.txt IDX_PQ*)
+corvid::QueryPlan	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::QueryPlan::key	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::new	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::get	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::insert	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::get_or_insert_with	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::len	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
+corvid::PlanCache::is_empty	Lifecycle	N/A	N/A	query-plan diagnostics and PlanCache excluded from the v1 ABI: advisory only (FFI.md §9)
