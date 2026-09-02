@@ -137,7 +137,7 @@ corvid::Collection::len	SELECT shaping	MAPPED	corvid.Collection.len (== 0 for em
 corvid::Collection::is_empty	SELECT shaping	MAPPED	corvid.Collection.len (== 0 for empty)	golden:mutations.txt:LEN
 corvid::Collection::insert_batch	Mutations	MAPPED	corvid.Collection.putMany (corvid.Kv)	golden:mutations.txt:PUTMANY + golden:schema.txt:PUTMANY_ROLLBACK
 corvid::Collection::insert_auto	Mutations	MAPPED	corvid.Collection.insertAuto	golden:mutations.txt:INSERT_AUTO
-corvid::Collection::get	SELECT shaping	MAPPED	corvid.Collection.get	golden:mutations.txt:GET
+corvid::Collection::get	SELECT shaping	MAPPED	corvid.Collection.get (+ corvid.Value/ValueView.mapKeys)	golden:mutations.txt:GET/GET_KEYS
 corvid::Collection::delete	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)
 corvid::Collection::delete_where	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)
 corvid::Collection::delete_batch	Mutations	MAPPED	corvid.Collection.delete/deleteWhere/deleteBatch	golden:mutations.txt (DELETE/DELETE_WHERE/DELETE_BATCH)

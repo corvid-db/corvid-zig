@@ -568,7 +568,7 @@ pub const SchemaIter = struct {
 /// A database handle (spec §4.1). One thread at a time per handle; derived
 /// handles keep the engine alive after `deinit` (spec §2).
 pub const Db = struct {
-    h: *c.corvid_db,
+    h: ?*c.corvid_db = null,
 
     /// Open (creating if absent) a file-backed database (spec §4.1);
     /// `path` borrowed UTF-8.
@@ -583,9 +583,12 @@ pub const Db = struct {
         return .{ .h = h };
     }
 
-    /// Release this reference (spec §4.1/§2). No-op-safe to call once.
+    /// Release this reference (spec §4.1/§2). Inert after a prior
+    /// `deinit` (the handle is nulled), like every wrapper here — the
+    /// C ABI's double-close/double-free UB class cannot happen.
     pub fn deinit(self: *Db) void {
-        _ = c.corvid_close(self.h);
+        if (self.h) |h| _ = c.corvid_close(h);
+        self.h = null;
     }
 
     /// Handle to a named collection (spec §4.2); created lazily on first
@@ -991,11 +994,14 @@ threadlocal var update_error: ?anyerror = null;
 /// A collection handle (spec §4.2). Holds an engine reference: freeing it
 /// (or `Db.deinit` before it) follows the ABI's derived-handle rules.
 pub const Collection = struct {
-    h: *c.corvid_coll,
+    h: ?*c.corvid_coll = null,
 
-    /// Free the collection handle (spec §4.2).
+    /// Free the collection handle (spec §4.2). Inert after a prior
+    /// `deinit` (the handle is nulled), matching `Db`/`Query`/`Pred` —
+    /// double-`deinit` is a safe no-op, not the C ABI's double free.
     pub fn deinit(self: *Collection) void {
-        c.corvid_collection_free(self.h);
+        if (self.h) |h| c.corvid_collection_free(h);
+        self.h = null;
     }
 
     /// The collection's name (spec §4.2), borrowed from the handle.
@@ -1180,13 +1186,22 @@ pub const Collection = struct {
     /// strictly after `after` (null starts at the beginning). Returns the
     /// page's rows plus the resume cursor (null at the end). The resume
     /// cursor, when non-null, is ALLOCATED — free it with `allocator.free`.
+    /// NON-NULL means not-end even when the slice is EMPTY: a page
+    /// boundary can land on the legal empty key, and corvid_page then
+    /// returns a zero-length cursor. §4.9 documents a len-0 `after` as a
+    /// restart ("NULL or length 0 starts at the beginning"), so feeding
+    /// that cursor back re-walks from the top — an engine-ABI gap the
+    /// binding reports faithfully rather than hiding as a false end.
     pub fn page(self: Collection, allocator: std.mem.Allocator, after: ?[]const u8, limit: usize) AllocError!Page {
         var rows_out: ?*c.corvid_rows = null;
         var next_after: [*c]u8 = null;
         var next_len: usize = 0;
         try check(c.corvid_page(self.h, if (after) |a| a.ptr else null, if (after) |a| a.len else 0, limit, &rows_out, &next_after, &next_len));
         var next_cursor: ?[]u8 = null;
-        if (next_after != null and next_len > 0) {
+        if (next_after != null) {
+            // corvid.cpp:1091's shape: non-NULL is not-end — copy the
+            // cursor out (possibly zero bytes) and free the ABI buffer
+            // on this path unconditionally.
             next_cursor = try allocator.alloc(u8, next_len);
             @memcpy(next_cursor.?, next_after[0..next_len]);
             c.corvid_free(next_after);
@@ -1500,6 +1515,15 @@ test "open, insert, get, delete in memory" {
     try testing.expect(!try docs.delete("k1"));
 }
 
+test "db and collection deinit are inert, not double-free" {
+    var db = try Db.openMemory();
+    var docs = try db.collection("docs");
+    docs.deinit();
+    docs.deinit(); // must be a safe no-op (the C ABI's double-free UB)
+    db.deinit();
+    db.deinit(); // ditto for the db handle
+}
+
 test "pred move + query fluent chain" {
     var db = try Db.openMemory();
     defer db.deinit();
@@ -1519,7 +1543,9 @@ test "pred move + query fluent chain" {
     try docs.insert("b", b);
 
     var q = try docs.query();
-    var only_docs = try Pred.compare("kind", .eq, try Value.text("doc"));
+    var kind_doc = try Value.text("doc");
+    defer kind_doc.deinit(); // compare CLONES it; ours is still ours
+    var only_docs = try Pred.compare("kind", .eq, kind_doc);
     defer only_docs.deinit(); // safe no-op after the move below
     _ = try q.filter(&only_docs); // moves the pred
     try testing.expect(only_docs.consumed());
@@ -1528,7 +1554,9 @@ test "pred move + query fluent chain" {
 
     var q2 = try docs.query();
     defer q2.deinit(); // no-op after count() below
-    var p2 = try Pred.compare("kind", .eq, try Value.text("doc"));
+    var kind_doc2 = try Value.text("doc");
+    defer kind_doc2.deinit(); // compare CLONES it; ours is still ours
+    var p2 = try Pred.compare("kind", .eq, kind_doc2);
     defer p2.deinit();
     const n = try (try q2.filter(&p2)).count();
     try testing.expectEqual(@as(usize, 1), n);
@@ -1637,6 +1665,48 @@ test "phrase search: order, stop-word collapse, k==0 inert" {
     var k0 = try notes.phraseSearch("body", "database", 0);
     defer k0.deinit();
     try testing.expect(k0.next() == null);
+}
+
+test "page: zero-length resume cursor at the empty key is not-end" {
+    // The empty key is legal ("key as everywhere — non-NULL, any
+    // length"), so a page boundary can land on it: corvid_page then
+    // hands back a NON-NULL zero-length cursor (§4.9: non-NULL means
+    // not-end). The wrapper must surface that as an allocated EMPTY
+    // slice (not null) and free the ABI buffer either way, and the
+    // walk must continue — §4.9 documents a len-0 `after` as a
+    // restart, so the follow-up page re-walks from the top and the
+    // short page ends it.
+    var db = try Db.openMemory();
+    defer db.deinit();
+    var docs = try db.collection("docs");
+    defer docs.deinit();
+    var first = Value.int(0);
+    defer first.deinit();
+    try docs.insert("", first); // the legal empty key, sorts first
+    var i: usize = 1;
+    while (i <= 3) : (i += 1) {
+        var d = Value.int(@intCast(i));
+        defer d.deinit();
+        var keybuf: [8]u8 = undefined;
+        const key = try std.fmt.bufPrint(&keybuf, "k{d}", .{i});
+        try docs.insert(key, d);
+    }
+    try testing.expectEqual(@as(usize, 4), try docs.len());
+
+    // Page 1: the boundary lands exactly on the empty key.
+    var p1 = try docs.page(testing.allocator, null, 1);
+    defer p1.deinit();
+    try testing.expect(p1.next_after != null); // not-end, not a null cursor
+    try testing.expectEqual(@as(usize, 0), p1.next_after.?.len);
+
+    // The walk continues past the boundary and terminates on the short
+    // page (the len-0 cursor restarts per §4.9; "", k1..k3 reappear).
+    var p2 = try docs.page(testing.allocator, p1.next_after, 5);
+    defer p2.deinit();
+    var seen: usize = 0;
+    while (p2.rows.next() != null) seen += 1;
+    try testing.expectEqual(@as(usize, 4), seen);
+    try testing.expect(p2.next_after == null); // short page = the end
 }
 
 test "page resume cursor walks the whole collection" {

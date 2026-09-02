@@ -36,7 +36,7 @@ cdylib** fetched from the pinned GitHub release, through a single
 
 | ABI shape | Zig shape |
 | --- | --- |
-| opaque handles (`corvid_db*`, …) | wrapper structs with `deinit()` — `Db`, `Collection`, `Query`, `Pred`, `Rows`, `Strs`, `GeoHits`, `GroupIter`, `SchemaIter`, `Value` |
+| opaque handles (`corvid_db*`, …) | wrapper structs with `deinit()` — `Db`, `Collection`, `Query`, `Pred`, `Rows`, `Strs`, `GeoHits`, `GroupIter`, `SchemaIter`, `Value` — every `deinit` nulls its handle, so a second `deinit` is inert (never the ABI's double free) |
 | `CORVID_ERR` + thread-local last error | Zig error unions: `Error` (one error per `corvid_err` code, plus `Unexpected`), mapped by reading `corvid_last_error_code` on failure; `lastErrorCode()`/`lastErrorMessage()` stay public |
 | frozen enums (`corvid_metric`, …) | Zig enums with the ABI's exact values (`Metric`, `Quant`, `Cmp`, `FieldType`, `ValueKind`, `ErrCode`) |
 | consumed-by-call args (`pred` trees, query builders) | MOVE semantics: consuming calls take the wrapper by pointer and null its handle — a moved wrapper's `deinit()` is a safe no-op. The C ABI's consumed-then-freed UB class cannot happen |
@@ -50,7 +50,8 @@ unwinds through C frames — Zig panics abort the process by default — so
 the ABI's "a misbehaving callback" contract stays structural, not
 hopeful. Wrapper-level misuse that would be UB in C (double free of a
 consumed handle, freeing a borrow) is either a compile error (`ValueView`
-has no destructor) or a benign no-op (moved wrappers are inert); the
+has no destructor) or a benign no-op (moved or already-`deinit`'ed
+wrappers are inert — `Db`/`Collection` included); the
 remaining sharp edges are the borrowed-slice lifetimes, which carry the
 spec's §5 rule 6 wording on every method that returns one.
 
