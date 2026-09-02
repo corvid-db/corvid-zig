@@ -26,18 +26,11 @@ The binding has two layers:
   golden harness drives the ABI exactly the way the engine's own C
   harness does.
 
-## What's inside
-
-| Path | What it is |
-| --- | --- |
-| `fetch.sh` / `fetch.ps1` | Download the pinned release archive for the host platform, verify it against the release's `checksums.txt` (sha256), byte-check the vendored fixtures, extract into gitignored `deps/current/` |
-| `build.zig` | Offline-first build consuming `deps/current/`; the `corvid` module, the golden-suite port, and the examples tour (`zig build test` / `zig build examples` / `zig build run-<name>`) |
-| `src/corvid.zig` | The idiomatic wrapper + its unit tests (error mapping, move semantics, borrow typing, phrase search semantics, page resume) |
-| `test/golden.zig` | The golden-suite port — the engine's own harness (`c/smoke.c`) ported statement-for-statement; replays the 267-line fixture suite against the downloaded libcorvid |
-| `golden/*.txt` | The engine's golden fixtures, vendored from the pinned release (fetch byte-compares them against the release's copies) |
-| `examples/{quickstart,hybrid,vector_index,text_search,graph,geo}.zig` | The examples tour — one runnable program per concept; `text_search` demonstrates the v0.3.0 positional `phraseSearch` API (order sensitivity, stop-word collapse, CJK bigrams, inert k=0) |
-| `docs/PLAN.md` | The binding's plan: the architecture ruling, binding rules, toolchain policy |
-| `docs/SURFACE.tsv` | Every construct of the engine's public surface resolved: the Zig API exposing it + the golden line that proves it, or `N/A` + reason (FFI.md §9) |
+The golden-suite port is a statement-for-statement port of the engine's
+own C harness, replaying the 267-line fixture suite against the
+downloaded libcorvid (the fixtures are vendored from the pinned
+release, and fetch byte-compares them against the release's copies on
+every download).
 
 ## Quick start
 
