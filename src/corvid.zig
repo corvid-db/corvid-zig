@@ -1188,10 +1188,15 @@ pub const Collection = struct {
     /// cursor, when non-null, is ALLOCATED — free it with `allocator.free`.
     /// NON-NULL means not-end even when the slice is EMPTY: a page
     /// boundary can land on the legal empty key, and corvid_page then
-    /// returns a zero-length cursor. §4.9 documents a len-0 `after` as a
-    /// restart ("NULL or length 0 starts at the beginning"), so feeding
-    /// that cursor back re-walks from the top — an engine-ABI gap the
-    /// binding reports faithfully rather than hiding as a false end.
+    /// returns a zero-length cursor. At this pin (v0.3.1) a len-0
+    /// `after` is a restart ("NULL or length 0 starts at the
+    /// beginning") — an engine-ABI gap the binding reports faithfully
+    /// rather than hiding as a false end. FIXED UPSTREAM in engine
+    /// d4124ae (zero-length cursor = exclusive continuation of b"";
+    /// FFI.md §4.9 erratum) — that commit POSTDATES the v0.3.1 tag, so
+    /// it rides the NEXT release tag; at that pin this comment and the
+    /// "zero-length resume cursor" test flip to the exclusive
+    /// semantics.
     pub fn page(self: Collection, allocator: std.mem.Allocator, after: ?[]const u8, limit: usize) AllocError!Page {
         var rows_out: ?*c.corvid_rows = null;
         var next_after: [*c]u8 = null;
@@ -1673,9 +1678,13 @@ test "page: zero-length resume cursor at the empty key is not-end" {
     // hands back a NON-NULL zero-length cursor (§4.9: non-NULL means
     // not-end). The wrapper must surface that as an allocated EMPTY
     // slice (not null) and free the ABI buffer either way, and the
-    // walk must continue — §4.9 documents a len-0 `after` as a
-    // restart, so the follow-up page re-walks from the top and the
-    // short page ends it.
+    // walk must continue — and at this pin (v0.3.1) a len-0 `after`
+    // is a restart, so the follow-up page re-walks from the top and
+    // the short page ends it. UPSTREAM FIX PENDING: engine d4124ae
+    // (postdating v0.3.1, riding the NEXT tag) makes the zero-length
+    // cursor the EXCLUSIVE continuation of b"" — when the pin passes
+    // that commit, this test flips: page 2 fed the empty cursor
+    // expects k1..k3 only (3 rows, no restart).
     var db = try Db.openMemory();
     defer db.deinit();
     var docs = try db.collection("docs");
@@ -1700,7 +1709,8 @@ test "page: zero-length resume cursor at the empty key is not-end" {
     try testing.expectEqual(@as(usize, 0), p1.next_after.?.len);
 
     // The walk continues past the boundary and terminates on the short
-    // page (the len-0 cursor restarts per §4.9; "", k1..k3 reappear).
+    // page (at v0.3.1 the len-0 cursor restarts: "", k1..k3 reappear —
+    // flips to 3 rows / no restart at the first pin past engine d4124ae).
     var p2 = try docs.page(testing.allocator, p1.next_after, 5);
     defer p2.deinit();
     var seen: usize = 0;

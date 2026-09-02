@@ -65,7 +65,7 @@ Inherited from the bindings program's master plan and non-negotiable:
 
 > **A binding opens with the golden-suite port.** The engine's golden
 > fixtures (267 executable lines across 8 files at v0.3.1 — the 256 the
-> suite shipped with, plus the v0.3.1 `VMAP_KEYS`/`GET_KEYS`/`PHRASE`
+> suite shipped with, plus the v0.3.0 `VMAP_KEYS`/`GET_KEYS`/`PHRASE`
 > lines) are the contract; a binding that wraps the ABI before it can
 > replay the contract is building on unverified ground. No ergonomic
 > sugar ships until the port is green against a tagged release's
@@ -135,7 +135,7 @@ modern minimums, CI tests current + previous, no EOL lines.
    unit tests pinning its ergonomic promises (error mapping, move
    semantics, borrow typing, phrase order/CJK/k=0, page resume).
 6. **The golden port** — `test/golden.zig`, 267/267 executable lines,
-   including the v0.3.1 `VMAP_KEYS`/`GET_KEYS` (map-key iteration) and
+   including the v0.3.0 `VMAP_KEYS`/`GET_KEYS` (map-key iteration) and
    `PHRASE`/`PHRASE_K0` (direct positional search) lines.
 7. **Examples tour** — six runnable programs (quickstart, hybrid,
    vector_index, text_search, graph, geo), each a `zig build run-<name>`

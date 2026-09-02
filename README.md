@@ -35,7 +35,7 @@ The binding has two layers:
 | `src/corvid.zig` | The idiomatic wrapper + its unit tests (error mapping, move semantics, borrow typing, phrase search semantics, page resume) |
 | `test/golden.zig` | The golden-suite port — the engine's own harness (`c/smoke.c`) ported statement-for-statement; replays the 267-line fixture suite against the downloaded libcorvid |
 | `golden/*.txt` | The engine's golden fixtures, vendored from the pinned release (fetch byte-compares them against the release's copies) |
-| `examples/{quickstart,hybrid,vector_index,text_search,graph,geo}.zig` | The examples tour — one runnable program per concept; `text_search` demonstrates the v0.3.1 positional `phraseSearch` API (order sensitivity, stop-word collapse, CJK bigrams, inert k=0) |
+| `examples/{quickstart,hybrid,vector_index,text_search,graph,geo}.zig` | The examples tour — one runnable program per concept; `text_search` demonstrates the v0.3.0 positional `phraseSearch` API (order sensitivity, stop-word collapse, CJK bigrams, inert k=0) |
 | `docs/PLAN.md` | The binding's plan: the architecture ruling, binding rules, toolchain policy |
 | `docs/SURFACE.tsv` | Every construct of the engine's public surface resolved: the Zig API exposing it + the golden line that proves it, or `N/A` + reason (FFI.md §9) |
 
@@ -85,7 +85,7 @@ while (rows.next()) |row| {            // row.key / row.score / row.doc
 }
 ```
 
-The positional phrase search (new in the engine's v0.3.1):
+The positional phrase search (new in the engine's v0.3.0):
 
 ```zig
 var rows = try notes.phraseSearch("body", "embedded the database", 10);
@@ -97,7 +97,7 @@ defer rows.deinit();
 ## The golden suite (the correctness floor)
 
 `zig build test` replays the engine's entire golden fixture suite — 267
-executable lines across 8 files, including the v0.3.1 additions
+executable lines across 8 files, including the v0.3.0 additions
 (`VMAP_KEYS`/`GET_KEYS` map-key iteration, `PHRASE`/`PHRASE_K0` direct
 positional search) — against the **downloaded** libcorvid, with the same
 discipline as the engine harness: every counted line must dispatch, first
