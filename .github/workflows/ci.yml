@@ -35,13 +35,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        zig-version: ['0.16.0']
+        version: ['0.16.0']
     steps:
       - uses: actions/checkout@v7
 
       - uses: mlugg/setup-zig@v2
         with:
-          zig-version: ${{ matrix.zig-version }}
+          version: ${{ matrix.zig-version }}
 
       - name: Fetch + verify engine artifacts (sha256)
         if: runner.os != 'Windows'
@@ -79,7 +79,7 @@ jobs:
 
       - uses: mlugg/setup-zig@v2
         with:
-          zig-version: '0.16.0'
+          version: '0.16.0'
 
       - name: Fetch + verify engine artifacts (sha256)
         run: ./fetch.sh

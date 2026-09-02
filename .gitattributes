@@ -1,0 +1,4 @@
+# The golden fixtures are byte-compared against the release archive
+# (fetch.sh/fetch.ps1) — they must check out LF everywhere; scripts too.
+* text=auto eol=lf
+*.png binary
