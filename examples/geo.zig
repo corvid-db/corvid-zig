@@ -26,6 +26,7 @@ fn fail(e: anyerror, what: []const u8) u8 {
     return 1;
 }
 
+// docs:begin:geo
 fn putCity(places: corvid.Collection, key: []const u8, name: []const u8, lat: f64, lon: f64) !void {
     var doc = corvid.Value.map();
     defer doc.deinit();
@@ -88,3 +89,4 @@ pub fn main(init: std.process.Init) u8 {
     printHits(init, "nearest 2 to Berlin:", &n2);
     return 0;
 }
+// docs:end:geo

@@ -41,6 +41,7 @@ fn fail(e: anyerror, what: []const u8) u8 {
     return 1;
 }
 
+// docs:begin:vector_index
 fn putDoc(items: corvid.Collection, key: []const u8, v: []const f32) !void {
     var doc = corvid.Value.map();
     defer doc.deinit();
@@ -123,3 +124,4 @@ pub fn main(init: std.process.Init) u8 {
     defer items2.deinit();
     return runQuery(init, items2, "v_disk", true, "on-disk HNSW (approx):");
 }
+// docs:end:vector_index
